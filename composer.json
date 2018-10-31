@@ -1,0 +1,26 @@
+{
+    "name": "tkach/laravel-presets",
+    "license": "MIT",
+    "keywords": ["laravel", "preset", "vuex"],
+    "authors": [
+        {
+            "name": "a.tkach",
+            "email": "tkach.aleksandr.s@gmail.com"
+        }
+    ],
+    "version": "1.0.0",
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tkach\\LaravelPresets\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tkach\\LaravelPresets\\PresetsServiceProvider"
+            ]
+        }
+    }
+}
