@@ -32,11 +32,17 @@ class PresetCommand extends Command
             return call_user_func(static::$macros[$this->argument('type')], $this);
         }
 
-        if (! in_array($this->argument('type'), ['vuex', 'spa'])) {
-            throw new InvalidArgumentException('Invalid preset. Please use > sudo php artisan vuex/spa');
+        if (! in_array($this->argument('type'), [ 'all', 'vuex', 'spa'])) {
+            throw new InvalidArgumentException('Invalid preset. Please use > sudo php artisan all/vuex/spa');
         }
 
         return $this->{$this->argument('type')}();
+    }
+
+    protected function all()
+    {
+        $this->vuex();
+        $this->spa();
     }
 
     protected function vuex()

@@ -2,10 +2,27 @@
 
 ## Install
 
-Description: 
+####Description: 
 Scaffolds for easy start new application
 
-Vuex:
+Install package:
+
+```bash
+composer require tkach/laravel-presets
+```
+
+Run command:
+
+```bash
+php artisan preset:up all
+
+php artisan preset:up vuex
+php artisan preset:up spa
+```
+
+## Structures:
+
+####Vuex:
 <pre>
 └─ resources
    └─ js
@@ -24,7 +41,7 @@ Vuex:
 </pre>
 
 
-Spa:
+####Spa:
 <pre>
 ├─ app
 |   └─ Http
@@ -36,16 +53,3 @@ Spa:
    ├─ web.php
    └─ ...
 </pre>
-
-Install package:
-
-```bash
-composer require tkach/laravel-presets
-```
-
-Run command:
-
-```bash
-php artisan preset:up vuex
-php artisan preset:up spa
-```
