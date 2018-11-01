@@ -2,7 +2,7 @@
 
 ## Install
 
-####Description: 
+#### Description: 
 Scaffolds for easy start new application
 
 Install package:
@@ -22,7 +22,7 @@ php artisan preset:up spa
 
 ## Structures:
 
-####Vuex:
+#### Vuex:
 <pre>
 └─ resources
    └─ js
@@ -41,7 +41,7 @@ php artisan preset:up spa
 </pre>
 
 
-####Spa:
+#### Spa:
 <pre>
 ├─ app
 |   └─ Http
