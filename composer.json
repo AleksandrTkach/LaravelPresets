@@ -1,15 +1,15 @@
 {
     "name": "tkach/laravel-presets",
     "license": "MIT",
-    "keywords": ["laravel", "preset", "vuex"],
+    "keywords": ["laravel", "preset", "vuex", "spa"],
     "authors": [
         {
             "name": "a.tkach",
             "email": "tkach.aleksandr.s@gmail.com"
         }
     ],
-    "version": "1.0.0",
-    "minimum-stability": "stable",
+    "version": "1.0.1",
+    "minimum-stability": "dev",
     "require": {},
     "autoload": {
         "psr-4": {

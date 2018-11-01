@@ -1,6 +1,6 @@
 <?php
 
-namespace Tkach\LaravelPresets\Commands\Presets;
+namespace Tkach\LaravelPresets\Commands\Presets\Vuex;
 
 use Illuminate\Foundation\Console\Presets\Preset;
 
