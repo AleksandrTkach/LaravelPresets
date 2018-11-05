@@ -18,6 +18,7 @@
     export default {
         mounted() {
             console.log('Component mounted.');
+            this.$store.dispatch('example');
         },
     };
 </script>

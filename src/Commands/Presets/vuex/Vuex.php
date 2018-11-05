@@ -61,7 +61,7 @@ class Vuex extends Preset
                 'to' => 'routes/web.php',
             ],[
                 'from' => '/stubs/routes/api.php',
-                'to' => 'routes/web.php',
+                'to' => 'routes/api.php',
             ],
         ];
 
