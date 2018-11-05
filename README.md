@@ -24,10 +24,17 @@ php artisan preset:up spa
 
 #### Vuex:
 <pre>
+├─ app
+|  └─ Http
+|     └─ Controllers
+|        ├─ ...
+|        └─ ExampleController.php
 └─ resources
    └─ js
       ├─ api
       |  └─ auth.js
+      ├─ components
+      |  └─ App.vue 
       └─ store
          ├─ modules
          |  └─ auth
@@ -38,6 +45,7 @@ php artisan preset:up spa
          |     ├─ state.js
          |     └─ index.js
          └─ index.js
+ 
 </pre>
 
 
