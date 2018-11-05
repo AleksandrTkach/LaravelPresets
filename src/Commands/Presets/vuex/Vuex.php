@@ -9,8 +9,9 @@ class Vuex extends Preset
     public static function install()
     {
         static::updateDependencies();
-        static::createVuexDirectories();
-        static::createVuexFiles();
+        static::createLayout();
+        static::vuexUp();
+        static::createExampleController();
     }
 
     protected static function updateDependencies()
@@ -29,61 +30,118 @@ class Vuex extends Preset
         );
     }
 
-    private static function createVuexDirectories()
+    protected static function createLayout()
     {
-        $paths = [
+        self::dir_create('resources/views/layouts');
+
+        $unlinks = [
+            'resources/views/welcome.blade.php',
+            'resources/js/components/ExampleComponent.vue',
+        ];
+
+        foreach ($unlinks as $path) {
+            self::dir_remove($path);
+        }
+        
+        $file_put_contents = [
+            [
+                'from' => '/stubs/views/layouts/app.blade.php',
+                'to' => 'resources/views/layouts/app.blade.php',
+            ],[
+                'from' => '/stubs/views/home.blade.php',
+                'to' => 'resources/views/home.blade.php',
+            ],[
+                'from' => '/stubs/js/app.js',
+                'to' => 'resources/js/app.js',
+            ],[
+                'from' => '/stubs/js/components/App.vue',
+                'to' => 'resources/js/components/App.vue',
+            ],[
+                'from' => '/stubs/routes/web.php',
+                'to' => 'routes/web.php',
+            ],[
+                'from' => '/stubs/routes/api.php',
+                'to' => 'routes/web.php',
+            ],
+        ];
+
+        foreach ($file_put_contents as $path) {
+            file_put_contents(
+                base_path($path['to']),
+                file_get_contents(__DIR__ . $path['from'])
+            );
+        }
+    }
+
+    private static function vuexUp()
+    {
+        $dirs = [
             'resources/js/api',
             'resources/js/store/modules/auth',
         ];
 
-        foreach ($paths as $path) {
-            if (!is_dir(base_path($path))) {
-                mkdir(base_path($path), 0755, true);
-            }
+        foreach ($dirs as $path) {
+            self::dir_create($path);
         }
-    }
+        
+        $base_path = '/stubs/js/';
 
-    private static function createVuexFiles()
-    {
-        $paths = [
+        $files = [
             [
-                'for' => '/stubs/vue/api/auth.js',
+                'for' => $base_path . '/api/auth.js',
                 'to' => 'resources/js/api/auth.js',
             ],[
-                'for' => '/stubs/vue/store/index.js',
+                'for' => $base_path . '/store/index.js',
                 'to' => 'resources/js/store/index.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/index.js',
+                'for' => $base_path . '/store/modules/auth/index.js',
                 'to' => 'resources/js/store/modules/auth/index.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/index.js',
+                'for' => $base_path . '/store/modules/auth/index.js',
                 'to' => 'resources/js/store/modules/auth/index.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/actions.js',
+                'for' => $base_path . '/store/modules/auth/actions.js',
                 'to' => 'resources/js/store/modules/auth/actions.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/getters.js',
+                'for' => $base_path . '/store/modules/auth/getters.js',
                 'to' => 'resources/js/store/modules/auth/getters.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/mutations.js',
+                'for' => $base_path . '/store/modules/auth/mutations.js',
                 'to' => 'resources/js/store/modules/auth/mutations.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/state.js',
+                'for' => $base_path . '/store/modules/auth/state.js',
                 'to' => 'resources/js/store/modules/auth/state.js',
             ],[
-                'for' => '/stubs/vue/store/modules/auth/mutation-types.js',
+                'for' => $base_path . '/store/modules/auth/mutation-types.js',
                 'to' => 'resources/js/store/modules/auth/mutation-types.js',
-            ],[
-                'from' => '/stubs/vue/app.js',
-                'to' => 'resources/js/app.js',
             ],
         ];
 
-        foreach ($paths as $path) {
+        foreach ($files as $path) {
             file_put_contents(
                 base_path($path['to']),
                 file_get_contents(__DIR__ . $path['for'])
             );
         }
+    }
+
+    private static function createExampleController()
+    {
+        file_put_contents(
+            base_path('app/Http/Controllers/ExampleController.php'),
+            file_get_contents(__DIR__ . '/stubs/Controllers/ExampleController.php')
+        );
+    }
+    
+    private static function dir_create($path)
+    {
+        if (!is_dir(base_path($path))) 
+            mkdir(base_path($path), 0755, true);
+    }    
+    
+    private static function dir_remove($path)
+    {
+        if (file_exists(base_path($path))) 
+            unlink($path);
     }
 }
