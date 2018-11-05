@@ -73,16 +73,17 @@ class Vuex extends Preset
             ],[
                 'for' => '/stubs/vue/store/modules/auth/mutation-types.js',
                 'to' => 'resources/js/store/modules/auth/mutation-types.js',
+            ],[
+                'from' => '/stubs/vue/app.js',
+                'to' => 'resources/js/app.js',
             ],
         ];
 
         foreach ($paths as $path) {
-            if (!file_exists(base_path($path['to']))) {
-                file_put_contents(
-                    base_path($path['to']),
-                    file_get_contents(__DIR__ . $path['for'])
-                );
-            }
+            file_put_contents(
+                base_path($path['to']),
+                file_get_contents(__DIR__ . $path['for'])
+            );
         }
     }
 }
