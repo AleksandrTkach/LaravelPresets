@@ -32,8 +32,8 @@ class PresetCommand extends Command
             return call_user_func(static::$macros[$this->argument('type')], $this);
         }
 
-        if (! in_array($this->argument('type'), [ 'all', 'vuex', 'spa'])) {
-            throw new InvalidArgumentException('Invalid preset. Please use > sudo php artisan all/vuex/spa');
+        if (! in_array($this->argument('type'), [ 'all', 'vuex', 'spa', 'vuerouter'])) {
+            throw new InvalidArgumentException('Invalid preset. Please use > sudo php artisan preset:up all/vuex/spa/vuerouter');
         }
 
         return $this->{$this->argument('type')}();
@@ -43,6 +43,7 @@ class PresetCommand extends Command
     {
         $this->vuex();
         $this->spa();
+        $this->vuerouter();
     }
 
     protected function vuex()
@@ -58,5 +59,13 @@ class PresetCommand extends Command
         Presets\Spa\Spa::install();
 
         $this->info('Spa installed successfully.');
+    }
+
+    protected function vuerouter()
+    {
+        Presets\Vuerouter\Vuerouter::install();
+
+        $this->info('Vue-Router scaffolding installed successfully.');
+        $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
     }
 }

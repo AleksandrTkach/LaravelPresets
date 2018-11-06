@@ -33,6 +33,7 @@ class Vuex extends Preset
     protected static function createLayout()
     {
         self::dir_create('resources/views/layouts');
+        self::dir_create('resources/js/components/pages');
 
         $unlinks = [
             'resources/views/welcome.blade.php',
@@ -56,6 +57,9 @@ class Vuex extends Preset
             ],[
                 'from' => '/stubs/js/components/App.vue',
                 'to' => 'resources/js/components/App.vue',
+            ],[
+                'from' => '/stubs/js/components/pages/Home.vue',
+                'to' => 'resources/js/components/pages/Home.vue',
             ],[
                 'from' => '/stubs/routes/web.php',
                 'to' => 'routes/web.php',
