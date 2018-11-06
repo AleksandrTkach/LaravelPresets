@@ -3,6 +3,7 @@
 namespace Tkach\LaravelPresets\Commands\Presets\Vuerouter;
 
 use Illuminate\Foundation\Console\Presets\Preset;
+use Tkach\LaravelPresets\Commands\Helper;
 
 class Vuerouter extends Preset
 {
@@ -20,8 +21,8 @@ class Vuerouter extends Preset
             $json->devDependencies = (object)[];
         }
 
-        $json->devDependencies->{"vue-router"};
-        $json->devDependencies->{"vuex-router-sync"};
+        $json->devDependencies->{"vue-router"} = "^3.0.1";
+        $json->devDependencies->{"vuex-router-sync"} = "^5.0.0";
 
         file_put_contents(
             base_path('package.json'),
@@ -31,11 +32,7 @@ class Vuerouter extends Preset
 
     protected static function vueRouterUp()
     {
-        self::dir_create('resources/js/router');
-
-        foreach ($unlinks as $path) {
-            self::dir_remove($path);
-        }
+        Helper::dir_create('resources/js/router');
 
         file_put_contents(
             base_path('resources/js/router/index.js'),

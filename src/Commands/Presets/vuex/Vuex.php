@@ -3,6 +3,7 @@
 namespace Tkach\LaravelPresets\Commands\Presets\Vuex;
 
 use Illuminate\Foundation\Console\Presets\Preset;
+use Tkach\LaravelPresets\Commands\Helper;
 
 class Vuex extends Preset
 {
@@ -32,8 +33,8 @@ class Vuex extends Preset
 
     protected static function createLayout()
     {
-        self::dir_create('resources/views/layouts');
-        self::dir_create('resources/js/components/pages');
+        Helper::dir_create('resources/views/layouts');
+        Helper::dir_create('resources/js/components/pages');
 
         $unlinks = [
             'resources/views/welcome.blade.php',
@@ -41,7 +42,7 @@ class Vuex extends Preset
         ];
 
         foreach ($unlinks as $path) {
-            self::dir_remove($path);
+            Helper::dir_remove($path);
         }
         
         $file_put_contents = [
@@ -60,6 +61,9 @@ class Vuex extends Preset
             ],[
                 'from' => '/stubs/js/components/pages/Home.vue',
                 'to' => 'resources/js/components/pages/Home.vue',
+            ],[
+                'from' => '/stubs/js/components/pages/NotFound.vue',
+                'to' => 'resources/js/components/pages/NotFound.vue',
             ],[
                 'from' => '/stubs/routes/web.php',
                 'to' => 'routes/web.php',
@@ -85,7 +89,7 @@ class Vuex extends Preset
         ];
 
         foreach ($dirs as $path) {
-            self::dir_create($path);
+            Helper::dir_create($path);
         }
         
         $base_path = '/stubs/js/';
@@ -137,15 +141,5 @@ class Vuex extends Preset
         );
     }
     
-    private static function dir_create($path)
-    {
-        if (!is_dir(base_path($path))) 
-            mkdir(base_path($path), 0755, true);
-    }    
-    
-    private static function dir_remove($path)
-    {
-        if (file_exists(base_path($path))) 
-            unlink($path);
-    }
+
 }

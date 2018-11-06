@@ -13,7 +13,7 @@ class PresetCommand extends Command
      * @var string
      */
     protected $signature = 'preset:up
-                            { type : The preset type (vuex, spa) }';
+                            { type : The preset type (all, vuex, spa, vuerouter) }';
     /**
      * The console command description.
      *
