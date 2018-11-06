@@ -35,6 +35,8 @@ php artisan preset:up spa
       |  └─ auth.js
       ├─ components
       |  └─ App.vue 
+      ├─ router
+      |  └─ index.js 
       └─ store
          ├─ modules
          |  └─ auth

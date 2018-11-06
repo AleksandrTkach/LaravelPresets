@@ -24,6 +24,8 @@ class Vuex extends Preset
         }
 
         $json->devDependencies->{"vuex"} = "^3.0.1";
+        $json->devDependencies->{"vue-router"} = "^3.0.1";
+        $json->devDependencies->{"vuex-router-sync"} = "^5.0.0";
 
         file_put_contents(
             base_path('package.json'),
@@ -35,6 +37,7 @@ class Vuex extends Preset
     {
         Helper::dir_create('resources/views/layouts');
         Helper::dir_create('resources/js/components/pages');
+        Helper::dir_create('resources/js/router');
 
         $unlinks = [
             'resources/views/welcome.blade.php',
@@ -44,7 +47,7 @@ class Vuex extends Preset
         foreach ($unlinks as $path) {
             Helper::dir_remove($path);
         }
-        
+
         $file_put_contents = [
             [
                 'from' => '/stubs/views/layouts/app.blade.php',
@@ -52,9 +55,6 @@ class Vuex extends Preset
             ],[
                 'from' => '/stubs/views/home.blade.php',
                 'to' => 'resources/views/home.blade.php',
-            ],[
-                'from' => '/stubs/js/app.js',
-                'to' => 'resources/js/app.js',
             ],[
                 'from' => '/stubs/js/components/App.vue',
                 'to' => 'resources/js/components/App.vue',
@@ -64,6 +64,12 @@ class Vuex extends Preset
             ],[
                 'from' => '/stubs/js/components/pages/NotFound.vue',
                 'to' => 'resources/js/components/pages/NotFound.vue',
+            ],[
+                'from' => '/stubs/js/router/index.js',
+                'to' => 'resources/js/router/index.js',
+            ],[
+                'from' => '/stubs/js/app.js',
+                'to' => 'resources/js/app.js',
             ],[
                 'from' => '/stubs/routes/web.php',
                 'to' => 'routes/web.php',
